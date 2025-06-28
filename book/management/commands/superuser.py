@@ -9,7 +9,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if not User.objects.filter(username="your_name").exists():
             User.objects.create_superuser(
-                username="your_name",
+                username=os.environ.get('SUPERUSER_NAME'),
                 email = "",
-                password="your_password"
+                password=os.environ.get('SUPERUSER_PASS')
             )
